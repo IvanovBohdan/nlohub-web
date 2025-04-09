@@ -1,0 +1,11 @@
+{
+    "files": [],
+    "compilerOptions": {
+        "lib": ["ES2023.Array"],
+        "target": "ESNext"
+    },
+    "references": [
+        { "path": "./tsconfig.app.json" },
+        { "path": "./tsconfig.node.json" }
+    ]
+}
