@@ -11,10 +11,6 @@ NLOHUB TempMail is a simple and efficient temporary email service designed to he
 -   **User-Friendly Interface**: Easy to use for everyone.
 -   **Secure**: No personal data is stored.
 
-    ```
-
-    ```
-
 ## Usage
 
 1. Open nlohub.xyz in your browser.
