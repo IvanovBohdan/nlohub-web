@@ -59,7 +59,7 @@ const About = () => {
 
                 <div className="bg-white shadow-md rounded-lg p-6">
                     <h2 className="text-xl font-semibold">Get in Touch</h2>
-                    <div className="flex space-x-4 mt-4">
+                    <div className="flex flex-col space-x-4 mt-4">
                         <a
                             href="mailto:bodaivanov@gmail.com"
                             className="flex items-center space-x-2 bg-zinc-100 p-3 rounded-lg shadow hover:bg-zinc-200"

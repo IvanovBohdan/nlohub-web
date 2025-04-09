@@ -1,6 +1,6 @@
 import type { ParsedMail } from "mailparser";
 
-const API_URI = "http://api.nlohub.xyz";
+const API_URI = "https://api.nlohub.xyz";
 
 export async function getAllEmailsForUsername(
     username: string
