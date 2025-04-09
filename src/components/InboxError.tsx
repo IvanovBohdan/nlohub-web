@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { Mail, MailX, MailWarning } from "lucide-react";
-import React from "react";
 
 type Props = {
     title?: string;

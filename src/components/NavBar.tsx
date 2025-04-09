@@ -1,7 +1,6 @@
-import React from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../assets/logo.svg";
-export function NavBar({}) {
+export function NavBar() {
     return (
         <nav className="bg-white border-b border-zinc-200 px-6 py-3 flex justify-between items-center shadow-sm">
             <Link to="/" className="flex items-center gap-2">

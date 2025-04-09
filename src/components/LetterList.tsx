@@ -5,9 +5,7 @@ import { useEmails } from "../store/emailsStore";
 import { useEffect, useState } from "react";
 import { ParsedMail } from "mailparser";
 
-type Props = {};
-
-export function LetterList({}: Props) {
+export function LetterList() {
     const emails = useEmails((state) => state.emails);
 
     return (
