@@ -36,7 +36,7 @@ export function InboxError({
             </div>
             <div
                 className={classNames(
-                    "rounded-full mb-4 h-2 blur-xs w-10 animate-[float-shadow_2s_ease-in-out_infinite]",
+                    "rounded-[40%] blur-[.3px] mb-4 h-2 w-11 animate-[float-shadow_2s_ease-in-out_infinite]",
                     {
                         "bg-red-900": error,
                         "bg-amber-800": warn,
