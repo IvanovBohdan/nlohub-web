@@ -1,21 +1,20 @@
 import { format } from "date-fns";
 import { Letter } from "react-letter";
 import { useNavigate, useParams } from "react-router";
-import { useEmails } from "../store/emailsStore";
+import { useEmailsStore } from "../store/emailsStore";
 import { InboxError } from "./InboxError";
 import { Trash2Icon } from "lucide-react";
-import { deleteEmailById } from "../api/emails";
 import { toast } from "react-toastify";
+import { useEmailDelete } from "../hooks/useEmailDelete";
 
 export function LetterView() {
     const { id } = useParams();
     const navigate = useNavigate();
+    const deleteEmail = useEmailDelete(id || "");
 
-    const email = useEmails((state) =>
+    const email = useEmailsStore((state) =>
         state.emails.find((email) => email.messageId === id)
     );
-
-    const deleteEmailFromStore = useEmails((state) => state.deleteEmailById);
 
     if (!email) {
         return (
@@ -27,9 +26,8 @@ export function LetterView() {
         );
     }
 
-    const name = email?.from?.value?.[0].name;
-    const address = email?.from?.value?.[0].address;
-    const { text, html, textAsHtml } = email;
+    const { text, html } = email;
+    const { name, address } = email.from;
 
     const handleDelete = () => {
         const confirmation = window.confirm(
@@ -45,21 +43,15 @@ export function LetterView() {
             return;
         }
 
-        deleteEmailById(email.messageId)
-            .then((res) => {
-                if (res.success) {
-                    toast.success("Email deleted successfully.");
-                    deleteEmailFromStore(res.messageId);
-                    navigate("/");
-                } else {
-                    toast.error(
-                        `Error deleting email: ${res.error || "Unknown error"}`
-                    );
-                }
+        deleteEmail()
+            .then(() => {
+                toast.success("Email deleted successfully.");
+                navigate("/");
             })
-            .catch((error) =>
-                toast.error(`Error deleting email: ${error.message}`)
-            );
+            .catch((error) => {
+                console.error("Error deleting email:", error);
+                toast.error("Failed to delete email. Please try again.");
+            });
     };
 
     return (
@@ -90,7 +82,7 @@ export function LetterView() {
                     </div>
                 </div>
                 <div className="border-t border-zinc-200 pt-6">
-                    <Letter text={text} html={html || textAsHtml || ""} />
+                    <Letter text={text} html={html || ""} />
                 </div>
             </div>
         </div>

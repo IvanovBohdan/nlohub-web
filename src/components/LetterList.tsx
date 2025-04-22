@@ -1,12 +1,12 @@
 import { formatDistanceToNowStrict } from "date-fns";
 import { InboxError } from "./InboxError";
 import { useNavigate } from "react-router";
-import { useEmails } from "../store/emailsStore";
+import { useEmailsStore } from "../store/emailsStore";
 import { useEffect, useState } from "react";
-import { ParsedMail } from "mailparser";
+import { Email } from "../types/postal-mime";
 
 export function LetterList() {
-    const emails = useEmails((state) => state.emails);
+    const emails = useEmailsStore((state) => state.emails);
 
     return (
         <div className="flex-1 overflow-y-auto p-1">
@@ -33,9 +33,12 @@ export function LetterList() {
     );
 }
 
-function Row({ email }: { email: ParsedMail }) {
-    const name = email?.from?.value?.[0].name;
-    const address = email?.from?.value?.[0].address;
+type RowProps = {
+    email: Email;
+};
+
+function Row({ email }: RowProps) {
+    const { name, address } = email.from;
 
     const navigate = useNavigate();
 
@@ -48,7 +51,7 @@ function Row({ email }: { email: ParsedMail }) {
             setTimeString(formatDistanceToNowStrict(email.date || Date.now()));
         }, 20000);
         return () => clearInterval(interval);
-    }, []);
+    }, [email]);
 
     return (
         <tr
