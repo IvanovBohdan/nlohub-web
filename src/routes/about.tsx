@@ -61,11 +61,11 @@ const About = () => {
                     <h2 className="text-xl font-semibold">Get in Touch</h2>
                     <div className="flex flex-col space-x-4 mt-4">
                         <a
-                            href="mailto:bodaivanov@gmail.com"
+                            href="mailto:bohdan@nlohub.xyz"
                             className="flex items-center space-x-2 bg-zinc-100 p-3 rounded-lg shadow hover:bg-zinc-200"
                         >
                             <Mail className="w-5 h-5" />{" "}
-                            <span>bodaivanov@gmail.com</span>
+                            <span>bohdan@nlohub.xyz</span>
                         </a>
                         <a
                             href="https://github.com/IvanovBohdan"
